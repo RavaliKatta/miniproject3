@@ -18,6 +18,8 @@ class RegisterUserTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('http://localhost:8000')
                 ->assertTitle('Laravel');
+
+
         });
     }
 }
