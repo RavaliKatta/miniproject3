@@ -17,9 +17,13 @@ class RegisterUserTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('http://localhost:8000')
-                ->assertTitle('Laravel');
-
-
+                ->assertTitle('Laravel')
+                ->clickLink('Register')
+                ->assertSee('Register')
+                ->type('#email', 'ravali@gmail.com')
+                ->type('#password', 'Ravali@123')
+                ->type('#password-confirm', 'Ravali@123')
+                ->click('button[type="submit"]');
         });
     }
 }
