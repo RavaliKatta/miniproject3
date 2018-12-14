@@ -6,14 +6,14 @@ use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class ViewQuestion extends DuskTestCase
+class DeleteQuestionTest extends DuskTestCase
 {
     /**
      * A Dusk test example.
      *
      * @return void
      */
-    public function testViewQuestion()
+    public function testDeleteQuestion()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('http://localhost:8000')
@@ -25,6 +25,8 @@ class ViewQuestion extends DuskTestCase
                 ->assertSee('Questions')
                 ->clickLink('View')
                 ->assertSee('Question')
+                ->press('#submit')
+                ->assertSee('Deleted')
                 ->press('#navbarDropdown')
                 ->clickLink('Logout')
                 ->assertTitle('Laravel');
