@@ -2,6 +2,7 @@
 
 namespace Tests\Browser;
 
+use App\User;
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -15,7 +16,9 @@ class DeleteQuestionTest extends DuskTestCase
      */
     public function testDeleteQuestion()
     {
-        $this->browse(function (Browser $browser) {
+        $user = factory(User::class)->make();
+        $user->save();
+        $this->browse(function ($browser) use ($user) {
             $browser->visit('http://localhost:8000')
                 ->assertTitle('Laravel')
                 ->clickLink('Login')

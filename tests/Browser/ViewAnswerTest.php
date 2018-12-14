@@ -7,18 +7,18 @@ use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class EditQuestionTest extends DuskTestCase
+class ViewAnswerTest extends DuskTestCase
 {
     /**
      * A Dusk test example.
      *
      * @return void
      */
-    public function testEditQuestion()
+    public function testExample()
     {
         $user = factory(User::class)->make();
         $user->save();
-        $this->browse(function ($browser) use ($user) {
+        $this->browse(function ($browser) use ($user){
             $browser->visit('http://localhost:8000')
                 ->assertTitle('Laravel')
                 ->clickLink('Login')
@@ -28,11 +28,12 @@ class EditQuestionTest extends DuskTestCase
                 ->assertSee('Questions')
                 ->clickLink('View')
                 ->assertSee('Question')
-                ->clickLink('Edit Question')
-                ->assertSee('Body')
-                ->type('#body', 'what is your birth place?')
-                ->click('#submit')
+                ->clickLink('Answer Question')
+                ->type('#body', 'Hello World!!')
+                ->press('#submit')
                 ->assertSee('Saved')
+                ->clickLink('View')
+                ->assertSee('Answer')
                 ->press('#navbarDropdown')
                 ->clickLink('Logout')
                 ->assertTitle('Laravel');
